@@ -5,10 +5,11 @@ A lightweight Android app for quick DNS-over-HTTPS (DoH) server management. Buil
 ## Features
 
 - **Quick Settings Tile** — tap to toggle DNS on/off, long-press to pick a server from the list
+- **Material You** — dynamic colors that adapt to your wallpaper
 - **Server availability check** — automatic DoH health check with latency display on app launch
 - **Drag-and-drop** — reorder servers by priority with long-press drag
 - **Swipe to delete** — remove servers with a left swipe or delete button
-- **Material 3** — dark theme, card-based UI
+- **Permission error handling** — graceful behavior when ADB permission is not granted
 
 ## How it works
 
@@ -22,7 +23,7 @@ adb shell pm grant com.yarbin.dnsswitcher android.permission.WRITE_SECURE_SETTIN
 
 | | Minimum | Recommended |
 |---|---|---|
-| Android | 14 (API 34) | 15+ |
+| Android | 12 (API 31) | 13+ |
 | Architecture | arm64-v8a, armeabi-v7a, x86, x86_64 | — |
 | RAM | 2 GB | 4 GB+ |
 | Storage | ~5 MB | — |
@@ -54,10 +55,11 @@ APK will be at `app/build/outputs/apk/debug/app-debug.apk`
 ## Возможности
 
 - **Quick Settings тайл** — тап для вкл/выкл DNS, зажатие для выбора сервера из списка
+- **Material You** — динамические цвета, подстраивающиеся под обои
 - **Проверка доступности** — автоматическая проверка DoH-серверов с отображением задержки при открытии приложения
 - **Drag-and-drop** — сортировка серверов по приоритету перетаскиванием
 - **Свайп для удаления** — удаление серверов свайпом влево или кнопкой
-- **Material 3** — тёмная тема, карточный интерфейс
+- **Обработка ошибок** — корректная работа при отсутствии ADB-разрешения
 
 ## Как это работает
 
@@ -71,7 +73,7 @@ adb shell pm grant com.yarbin.dnsswitcher android.permission.WRITE_SECURE_SETTIN
 
 | | Минимум | Рекомендуется |
 |---|---|---|
-| Android | 14 (API 34) | 15+ |
+| Android | 12 (API 31) | 13+ |
 | Архитектура | arm64-v8a, armeabi-v7a, x86, x86_64 | — |
 | ОЗУ | 2 ГБ | 4 ГБ+ |
 | Хранилище | ~5 МБ | — |
