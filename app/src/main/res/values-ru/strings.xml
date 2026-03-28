@@ -20,5 +20,9 @@
 
     <string name="tile_off">DNS: выкл</string>
 
+    <string name="permission_missing">Выдайте разрешение через ADB:\nadb shell pm grant com.yarbin.dnsswitcher android.permission.WRITE_SECURE_SETTINGS</string>
+    <string name="permission_error">Нет разрешения. Выдайте через ADB.</string>
+    <string name="tile_no_permission">Нет разрешения ADB</string>
+
     <string name="delete_content_desc">Удалить</string>
 </resources>

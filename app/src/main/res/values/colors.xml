@@ -10,4 +10,5 @@
     <color name="md_on_surface">#FFE6E1E5</color>
     <color name="md_surface_variant">#FF2B2930</color>
     <color name="md_on_surface_variant">#FFCAC4D0</color>
+    <color name="status_ok">#FF4CAF50</color>
 </resources>

@@ -30,6 +30,11 @@
     <!-- Tile -->
     <string name="tile_off">DNS: off</string>
 
+    <!-- Errors -->
+    <string name="permission_missing">Grant permission via ADB:\nadb shell pm grant com.yarbin.dnsswitcher android.permission.WRITE_SECURE_SETTINGS</string>
+    <string name="permission_error">No permission. Grant via ADB first.</string>
+    <string name="tile_no_permission">No ADB permission</string>
+
     <!-- Accessibility -->
     <string name="delete_content_desc">Delete</string>
 </resources>

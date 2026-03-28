@@ -2,9 +2,10 @@ package com.yarbin.dnsswitcher
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
 import android.os.Bundle
+import android.provider.Settings
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,10 +16,12 @@ import android.widget.RadioButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
+import com.google.android.material.color.DynamicColors
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.net.HttpURLConnection
@@ -33,10 +36,13 @@ class ServerListActivity : AppCompatActivity() {
     private val serverStatus = mutableMapOf<String, CheckResult>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        DynamicColors.applyToActivityIfAvailable(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_server_list)
 
         servers.addAll(loadServers())
+
+        checkPermission()
 
         recyclerView = findViewById(R.id.recycler_servers)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -96,7 +102,9 @@ class ServerListActivity : AppCompatActivity() {
             ) {
                 if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE && dX < 0) {
                     val itemView = viewHolder.itemView
-                    val paint = Paint().apply { color = Color.parseColor("#FFF44336") }
+                    val errorColor = getThemeColor(com.google.android.material.R.attr.colorError)
+                    val onErrorColor = getThemeColor(com.google.android.material.R.attr.colorOnError)
+                    val paint = Paint().apply { color = errorColor }
                     c.drawRoundRect(
                         itemView.right + dX, itemView.top.toFloat(),
                         itemView.right.toFloat(), itemView.bottom.toFloat(),
@@ -105,7 +113,7 @@ class ServerListActivity : AppCompatActivity() {
                         paint
                     )
                     val textPaint = Paint().apply {
-                        color = Color.WHITE
+                        color = onErrorColor
                         textSize = 14f * resources.displayMetrics.scaledDensity
                         isAntiAlias = true
                     }
@@ -130,6 +138,20 @@ class ServerListActivity : AppCompatActivity() {
         }
 
         checkAllServers()
+    }
+
+    private fun checkPermission() {
+        try {
+            Settings.Global.getString(contentResolver, "private_dns_mode")
+        } catch (_: SecurityException) {
+            Toast.makeText(this, R.string.permission_missing, Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun getThemeColor(attr: Int): Int {
+        val typedValue = TypedValue()
+        theme.resolveAttribute(attr, typedValue, true)
+        return typedValue.data
     }
 
     private fun getActiveServer(): String? {
@@ -276,7 +298,9 @@ class ServerListActivity : AppCompatActivity() {
             } else 0
             holder.card.strokeWidth = strokeWidthPx
             if (isActive) {
-                holder.card.strokeColor = ctx.getColor(R.color.md_primary)
+                val typedValue = TypedValue()
+                ctx.theme.resolveAttribute(com.google.android.material.R.attr.colorPrimary, typedValue, true)
+                holder.card.strokeColor = typedValue.data
             }
 
             val status = statusMap[server]
@@ -284,17 +308,21 @@ class ServerListActivity : AppCompatActivity() {
                 is CheckResult.Checking -> {
                     holder.textStatus.visibility = View.VISIBLE
                     holder.textStatus.text = "…"
-                    holder.textStatus.setTextColor(Color.GRAY)
+                    val typedValue = TypedValue()
+                    ctx.theme.resolveAttribute(com.google.android.material.R.attr.colorOnSurfaceVariant, typedValue, true)
+                    holder.textStatus.setTextColor(typedValue.data)
                 }
                 is CheckResult.Ok -> {
                     holder.textStatus.visibility = View.VISIBLE
                     holder.textStatus.text = ctx.getString(R.string.status_ms, status.latencyMs)
-                    holder.textStatus.setTextColor(Color.parseColor("#FF4CAF50"))
+                    holder.textStatus.setTextColor(ContextCompat.getColor(ctx, R.color.status_ok))
                 }
                 is CheckResult.Fail -> {
                     holder.textStatus.visibility = View.VISIBLE
                     holder.textStatus.text = ctx.getString(R.string.status_unreachable)
-                    holder.textStatus.setTextColor(Color.parseColor("#FFF44336"))
+                    val typedValue = TypedValue()
+                    ctx.theme.resolveAttribute(com.google.android.material.R.attr.colorError, typedValue, true)
+                    holder.textStatus.setTextColor(typedValue.data)
                 }
                 null -> {
                     holder.textStatus.visibility = View.GONE
