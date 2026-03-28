@@ -9,7 +9,6 @@ A lightweight Android app for quick DNS-over-HTTPS (DoH) server management. Buil
 - **Server availability check** — automatic DoH health check with latency display on app launch
 - **Drag-and-drop** — reorder servers by priority with long-press drag
 - **Swipe to delete** — remove servers with a left swipe or delete button
-- **Permission error handling** — graceful behavior when ADB permission is not granted
 
 ## How it works
 
@@ -59,7 +58,6 @@ APK will be at `app/build/outputs/apk/debug/app-debug.apk`
 - **Проверка доступности** — автоматическая проверка DoH-серверов с отображением задержки при открытии приложения
 - **Drag-and-drop** — сортировка серверов по приоритету перетаскиванием
 - **Свайп для удаления** — удаление серверов свайпом влево или кнопкой
-- **Обработка ошибок** — корректная работа при отсутствии ADB-разрешения
 
 ## Как это работает
 
