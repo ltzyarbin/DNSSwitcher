@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">DNS Switcher</string>
+
+    <!-- Server list -->
+    <string name="active_label">Active</string>
+    <string name="active_toast">Active: %s</string>
+    <string name="deleted_toast">Deleted: %s</string>
+
+    <!-- Status -->
+    <string name="status_unreachable">unreachable</string>
+    <string name="status_ms">%d ms</string>
+
+    <!-- Dialogs -->
+    <string name="delete_title">Delete server?</string>
+    <string name="delete_button">Delete</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="add_title">New server</string>
+    <string name="add_button">Add</string>
+    <string name="add_hint">dns.example.com</string>
+
+    <!-- Swipe -->
+    <string name="swipe_delete">Delete</string>
+
+    <!-- Picker (QS tile long press) -->
+    <string name="picker_title">Choose DNS</string>
+    <string name="picker_disable">Disable DNS</string>
+    <string name="picker_dns_disabled">DNS disabled</string>
+    <string name="picker_dns_set">DNS: %s</string>
+
+    <!-- Tile -->
+    <string name="tile_off">DNS: off</string>
+
+    <!-- Accessibility -->
+    <string name="delete_content_desc">Delete</string>
+</resources>

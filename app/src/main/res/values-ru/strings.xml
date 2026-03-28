@@ -1,0 +1,24 @@
+<resources>
+    <string name="active_label">Активный</string>
+    <string name="active_toast">Активный: %s</string>
+    <string name="deleted_toast">Удалён: %s</string>
+
+    <string name="status_unreachable">недоступен</string>
+
+    <string name="delete_title">Удалить сервер?</string>
+    <string name="delete_button">Удалить</string>
+    <string name="cancel_button">Отмена</string>
+    <string name="add_title">Новый сервер</string>
+    <string name="add_button">Добавить</string>
+
+    <string name="swipe_delete">Удалить</string>
+
+    <string name="picker_title">Выбери DNS</string>
+    <string name="picker_disable">Выключить DNS</string>
+    <string name="picker_dns_disabled">DNS выключен</string>
+    <string name="picker_dns_set">DNS: %s</string>
+
+    <string name="tile_off">DNS: выкл</string>
+
+    <string name="delete_content_desc">Удалить</string>
+</resources>
